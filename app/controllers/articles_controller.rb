@@ -20,4 +20,16 @@ class ArticlesController < ApplicationController
   end
 
   # add edit and update methods here
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    #raise params.inspect
+    ##raise will cause the application to pauce and print out the params on an error page this way we are able to confirm the method is PATCH confirming it is set to update
+      @article = Article.find(params[:id])
+      @article.update(title: params[:article][:title], description: params[:article][:description])
+      redirect_to article_path(@article)
+  end
+
 end
